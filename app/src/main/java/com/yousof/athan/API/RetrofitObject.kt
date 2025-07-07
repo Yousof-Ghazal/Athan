@@ -2,20 +2,15 @@ package com.yousof.athan.API
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+
 
 object RetrofitObject {
 
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.aladhan.com/v1/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    val BASE_URL = "https://api.aladhan.com/v1"
-
-    val athanApi: AthanApi by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(AthanApi ::class.java)
-
-    }
+    val api: AladhanApi = retrofit.create(AladhanApi::class.java)
 }
 
