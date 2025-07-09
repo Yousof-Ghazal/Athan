@@ -11,6 +11,6 @@ object RetrofitObject {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val api: AladhanApi = retrofit.create(AladhanApi::class.java)
+    val aladanApi: AladhanApi = retrofit.create(AladhanApi::class.java)
 }
 
