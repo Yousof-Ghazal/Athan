@@ -21,7 +21,7 @@ import com.yousof.athan.API.Aladan
 
 
 @Composable
-
+//testBranchDDateHomeScreen
 fun CurrentDate (
     data: Aladan
 ){
