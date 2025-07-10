@@ -14,12 +14,10 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("TEST", "onCreate called")
-
         super.onCreate(savedInstanceState)
      enableEdgeToEdge()
 
-        setContent {
+         setContent {
             HomeScreen()
         }
     }

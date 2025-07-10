@@ -21,7 +21,7 @@ import com.yousof.athan.API.Aladan
 
 
 @Composable
-//testBranchDDateHomeScreen
+//Date optimized
 fun CurrentDate (
     data: Aladan
 ){
@@ -30,7 +30,7 @@ fun CurrentDate (
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
     ) {
         Row  (
-            modifier = Modifier.fillMaxWidth().padding(end = 147.dp,  top = 40.dp),
+            modifier = Modifier.fillMaxWidth().padding(end = 147.dp,  top = 35.dp),
             horizontalArrangement = Arrangement.Start,
         )
         {
@@ -42,18 +42,17 @@ fun CurrentDate (
             )
         }
         Row (
-            modifier = Modifier.fillMaxWidth().padding(end = 147.dp),
+            modifier = Modifier.fillMaxWidth().padding(end = 147.dp , top = 8.dp),
             horizontalArrangement = Arrangement.Start,
         ) {
             Text(
-                text =data.data.date.hijri.month.en+" / "+data.data.date.hijri.month.number+" / "+data.data.date.hijri.year,
+                text = data.data.date.hijri.month.en+" / "+ data.data.date.hijri.month.number +" / "+data.data.date.hijri.year,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Color.White,
             )
         }
     }
-
 }
 
 @Preview()
