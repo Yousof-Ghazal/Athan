@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -14,8 +16,10 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yousof.athan.HomeScreenComponents.CurrentDate
+import com.yousof.athan.HomeScreenComponents.CurrentPrayer
 import com.yousof.athan.HomeScreenComponents.PrayerCard
 import com.yousof.athan.R
 import com.yousof.athan.ViewModel.PrayerViewModel
@@ -25,6 +29,8 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 fun HomeScreen(
 viewModel: PrayerViewModel = PrayerViewModel()
+
+
 ){
     val uiState = viewModel.uiState.collectAsState()
     Box(
@@ -51,7 +57,6 @@ viewModel: PrayerViewModel = PrayerViewModel()
         Row (
             modifier = Modifier,
           horizontalArrangement = Arrangement.spacedBy(36.dp)
-
         ){
             PrayerCard(title = "Fajr", data = uiState.value)
             PrayerCard(title = "Dhuhr", data = uiState.value)
@@ -64,6 +69,20 @@ viewModel: PrayerViewModel = PrayerViewModel()
             PrayerCard(title = "Asr", data = uiState.value)
             PrayerCard(title = "Maghrib", data = uiState.value)
             PrayerCard(title = "Isha", data = uiState.value)
+        }
+
+        Spacer(modifier = Modifier.height(208.dp))
+        Row (
+        ){
+            CurrentPrayer()
+        }
+        Row (
+        ){
+            CurrentPrayer()
+        }
+        Row (
+        ){
+            CurrentPrayer()
         }
     }
 }
