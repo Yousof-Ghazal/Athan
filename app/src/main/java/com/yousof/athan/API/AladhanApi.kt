@@ -10,5 +10,5 @@ interface AladhanApi {
         @Query ("city") city: String,
         @Query ("country") country: String,
         @Query ("method") method: Int = 3
-    ) : PrayerTimesResponse
+    ) : Aladan
 }
