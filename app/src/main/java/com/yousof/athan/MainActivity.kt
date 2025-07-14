@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
      enableEdgeToEdge()
 
          setContent {
-            HomeScreen()
+        AthanApp()
         }
     }
 }
