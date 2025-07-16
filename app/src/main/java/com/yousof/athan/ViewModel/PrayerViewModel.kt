@@ -3,7 +3,6 @@ package com.yousof.athan.ViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yousof.athan.API.Aladan
-import com.yousof.athan.API.AladhanApi
 import com.yousof.athan.API.RetrofitObject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -88,7 +87,6 @@ class PrayerViewModel : ViewModel() {
         ), status = ""
     )
     )
-
    init {
        viewModelScope.launch {
            val result = aladhanApi.getPrayerTimes("Amman" , "jordan")
