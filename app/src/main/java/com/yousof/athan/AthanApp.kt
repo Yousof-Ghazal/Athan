@@ -14,46 +14,51 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yousof.athan.Screens.Bottombar
 import com.yousof.athan.Screens.CalenderScreen
 import com.yousof.athan.Screens.HomeScreen
+import com.yousof.athan.Screens.KabaDirection
+import com.yousof.athan.Screens.SettingsScreen
 import com.yousof.athan.ViewModel.NavigationScreen
 
 
 @Composable
 
-fun AthanApp(){
+fun AthanApp(
+    navController: NavHostController = rememberNavController()
+){
     val navController = rememberNavController()
     var selectedIndex by remember { mutableStateOf(0) }
-
     Box(
         modifier = Modifier.fillMaxSize()
-    ){
+    ) {
         Image(
             painterResource(id = R.drawable.fajr),
             contentDescription = "Fajir",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
-    }
-    Box(modifier = Modifier.fillMaxSize()) {
-        NavHost(
-            navController = navController,
-            startDestination = NavigationScreen.Home.route,
-            modifier = Modifier.padding(bottom = 80.dp)
+            NavHost(
+                navController = navController,
+                startDestination = NavigationScreen.Home.route,
+                modifier = Modifier.padding(bottom = 80.dp)
 
-        ) {
-            composable(NavigationScreen.Home.route) { HomeScreen(navController) }
-            composable(NavigationScreen.Calender.route) { CalenderScreen(navController) }
-        }
-        Bottombar(
-            navController = navController,
-            selectedIndex = selectedIndex,
-            onItemSelected = {index -> selectedIndex = index},
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
+            ) {
+                composable(NavigationScreen.Home.route) { HomeScreen(navController) }
+                composable(NavigationScreen.Calender.route) { CalenderScreen(navController) }
+                composable(NavigationScreen.KabaDirection.route) { KabaDirection(navController) }
+                composable(NavigationScreen.Settings.route) { SettingsScreen(navController) }
+            }
+            Bottombar(
+                navController = navController,
+                selectedIndex = selectedIndex,
+                onItemSelected = { index -> selectedIndex = index },
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+
     }
 }

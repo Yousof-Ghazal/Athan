@@ -1,7 +1,9 @@
 package com.yousof.athan.HomeScreenComponents
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.material.icons.filled.NotificationsNone
+import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -37,7 +42,7 @@ fun CurrentPrayer (
 
     var timeLeft by remember { mutableStateOf(0L) }
     var nextPrayer by remember { mutableStateOf("...") }
-
+    var isActive by remember { mutableStateOf(false) }
     Card (
         modifier = Modifier
             .width(380.dp)
@@ -65,7 +70,20 @@ fun CurrentPrayer (
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Medium
             )
-            Icon(
+                    Icon(
+                        imageVector = if(isActive) Icons.Filled.NotificationsActive
+                         else Icons.Filled.Notifications,
+                        contentDescription = "notification",
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .width(37.dp)
+                            .height(35.dp)
+                            .clickable {isActive =! isActive}
+                        , tint = Color.White
+                    )
+
+            }
+           /* Icon(
                 Icons.Filled.NotificationsActive, contentDescription = "Notficication",
                 modifier = Modifier
                     .padding(8.dp)
@@ -73,7 +91,9 @@ fun CurrentPrayer (
                     .height(35.dp)
                 , tint = Color.White
             )
-        }
+
+            */
+
     }
 
 

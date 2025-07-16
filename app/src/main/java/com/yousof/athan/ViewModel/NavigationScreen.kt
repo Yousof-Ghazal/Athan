@@ -11,7 +11,7 @@ sealed class NavigationScreen(
     val title : String,
     val icon: ImageVector
 )
-{
+  {
     object Home: NavigationScreen("home", "Home", Icons.Default.Home)
     object Calender: NavigationScreen("calender", "Calender", Icons.Default.CalendarMonth)
     object KabaDirection: NavigationScreen("kabadirection", "KabaDirection", Icons.Default.CalendarMonth)
