@@ -1,4 +1,4 @@
-package com.yousof.athan.SettingScreenComponents
+package com.yousof.athan.settingScreenComponents
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -28,39 +28,38 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Language (){
-
+fun language() {
     Card(
-        modifier = Modifier.padding( 8.dp).fillMaxWidth(),
+        modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(Color(0x99482864)),
         border = BorderStroke(1.dp, Color.White),
-
-        ) {
+    ) {
         Row(
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            Column (
+            Column(
                 modifier = Modifier.weight(1f),
-               horizontalAlignment = Alignment.Start
-            ){
-                Box (
-                    modifier = Modifier.size(40.dp)
-                        .clip(shape = CircleShape)
-                        .background(Color(0x99482864))
-                ){
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Box(
+                    modifier =
+                        Modifier.size(40.dp)
+                            .clip(shape = CircleShape)
+                            .background(Color(0x99482864)),
+                ) {
                     Icon(
                         imageVector = Icons.Filled.Language,
                         contentDescription = "Language",
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
-            Column (
+            Column(
                 horizontalAlignment = Alignment.End,
-                modifier = Modifier.clickable {  }.weight(1f).padding(end = 16.dp)
-            ){
+                modifier = Modifier.clickable { }.weight(1f).padding(end = 16.dp),
+            ) {
                 Text(
                     text = "Deutsch",
                     color = Color.White,

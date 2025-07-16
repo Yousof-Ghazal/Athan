@@ -1,5 +1,4 @@
-package com.yousof.athan.Screens
-
+package com.yousof.athan.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,49 +14,48 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.yousof.athan.HomeScreenComponents.CurrentDate
-import com.yousof.athan.HomeScreenComponents.CurrentPrayer
-import com.yousof.athan.HomeScreenComponents.PrayerCard
-import com.yousof.athan.ViewModel.PrayerViewModel
-
+import com.yousof.athan.homeScreenComponents.CurrentDate
+import com.yousof.athan.homeScreenComponents.CurrentPrayer
+import com.yousof.athan.homeScreenComponents.PrayerCard
+import com.yousof.athan.viewModel.PrayerViewModel
 
 @Composable
-
-fun HomeScreen(
+fun homeScreen(
     navController: NavHostController,
     viewModel: PrayerViewModel = viewModel(),
-){
+) {
     val uiState = viewModel.uiState.collectAsState()
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Row(
-            modifier = Modifier.padding(16.dp)
-        ){
+            modifier = Modifier.padding(16.dp),
+        ) {
             CurrentDate(uiState.value)
         }
-        Row (
+        Row(
             modifier = Modifier,
-          horizontalArrangement = Arrangement.spacedBy(36.dp)
-        ){
+            horizontalArrangement = Arrangement.spacedBy(36.dp),
+        ) {
             PrayerCard(title = "Fajr", data = uiState.value)
             PrayerCard(title = "Dhuhr", data = uiState.value)
             PrayerCard(title = "Sunrise", data = uiState.value)
         }
-        Row (
+        Row(
             modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(36.dp)
-            ){
+            horizontalArrangement = Arrangement.spacedBy(36.dp),
+        ) {
             PrayerCard(title = "Asr", data = uiState.value)
             PrayerCard(title = "Maghrib", data = uiState.value)
             PrayerCard(title = "Isha", data = uiState.value)
         }
         Spacer(modifier = Modifier.height(208.dp))
-        Row (){ CurrentPrayer() }
-        Row (){ CurrentPrayer() }
-        Row (){ CurrentPrayer() }
+        Row { CurrentPrayer() }
+        Row { CurrentPrayer() }
+        Row { CurrentPrayer() }
     }
 }

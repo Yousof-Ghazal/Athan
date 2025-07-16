@@ -1,20 +1,19 @@
-package com.yousof.athan.SettingScreenComponents
-
+package com.yousof.athan.settingScreenComponents
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -29,47 +28,41 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun AboutUs (){
-
+fun location() {
     Card(
-        modifier = Modifier.padding( 8.dp).fillMaxWidth(),
+        modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(Color(0x99482864)),
         border = BorderStroke(1.dp, Color.White),
-        ) {
+    ) {
         Row(
-            modifier = Modifier
-                .padding(vertical = 16.dp, horizontal = 14.dp)
-                .fillMaxWidth(),
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            Column (
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.clickable { }
-            ){
-                Box (
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(shape = CircleShape),
-                       // .background(Color(0x99482864)),
-                    contentAlignment = Alignment.Center
-                ){
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Box(
+                    modifier =
+                        Modifier.size(40.dp)
+                            .clip(shape = CircleShape)
+                            .background(Color(0x99482864)),
+                ) {
                     Icon(
-                        imageVector = Icons.Filled.Info,
-                        contentDescription = "About us",
-                        modifier = Modifier.fillMaxSize(0.8f)
+                        imageVector = Icons.Filled.LocationOn,
+                        tint = Color.White,
+                        contentDescription = "Location",
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
-            Spacer(modifier = Modifier.size(8.dp))
-            Column (
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.clickable {  }
-            ){
+            Column(
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier.clickable { }.weight(1f).padding(end = 16.dp),
+            ) {
                 Text(
-                    text = "About us",
+                    text = "Deutschland",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp,
