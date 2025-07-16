@@ -1,4 +1,4 @@
-package com.yousof.athan.SettingScreenComponents
+package com.yousof.athan.settingScreenComponents
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -32,58 +32,59 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
 @Composable
-fun HourFormat() {
+fun hourFormat() {
     Card(
-        modifier = Modifier.padding( 8.dp).fillMaxWidth(),
+        modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(Color(0x99482864)),
         border = BorderStroke(1.dp, Color.White),
-
-        ) {
+    ) {
         Row(
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Row (
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                Box (
-                    modifier = Modifier.size(40.dp)
-                        .clip(shape = CircleShape)
-                        .background(Color(0x99482864))
-                ){
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(
+                    modifier =
+                        Modifier.size(40.dp)
+                            .clip(shape = CircleShape)
+                            .background(Color(0x99482864)),
+                ) {
                     Icon(
                         imageVector = Icons.Filled.AccessTimeFilled,
                         contentDescription = "HourFormat",
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
             Spacer(modifier = Modifier.width(8.dp))
-            Column (
-            ){
+            Column {
                 Text(
                     text = "24-hour format",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp,
-                    modifier = Modifier.padding(12.dp)
+                    modifier = Modifier.padding(12.dp),
                 )
             }
             Spacer(modifier = Modifier.width(30.dp))
-            var isSelected = remember{
-                mutableStateOf(false)
-            }
-            Column (
+            var isSelected =
+                remember {
+                    mutableStateOf(false)
+                }
+            Column(
                 modifier = Modifier.padding(end = 8.dp).weight(1f),
                 horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.SpaceBetween
-            )
-            { Switch(checked = isSelected.value,
-                onCheckedChange = { isSelected.value = it },
-                colors = SwitchDefaults.colors(),)
+                verticalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Switch(
+                    checked = isSelected.value,
+                    onCheckedChange = { isSelected.value = it },
+                    colors = SwitchDefaults.colors(),
+                )
             }
         }
     }

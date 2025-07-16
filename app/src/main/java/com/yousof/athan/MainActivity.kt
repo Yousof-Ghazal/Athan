@@ -6,15 +6,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 
-
 class MainActivity : ComponentActivity() {
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     enableEdgeToEdge()
-
-         setContent {
-        AthanApp()
+        enableEdgeToEdge()
+        setContent {
+            AthanApp()
         }
     }
 }

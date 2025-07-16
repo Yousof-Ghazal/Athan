@@ -1,6 +1,5 @@
-package com.yousof.athan.Screens
+package com.yousof.athan.screens
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,20 +13,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.yousof.athan.SettingScreenComponents.AboutUs
-import com.yousof.athan.SettingScreenComponents.Date
-import com.yousof.athan.SettingScreenComponents.HourFormat
-import com.yousof.athan.SettingScreenComponents.Language
-import com.yousof.athan.SettingScreenComponents.Location
+import com.yousof.athan.settingScreenComponents.AboutUs
+import com.yousof.athan.settingScreenComponents.Date
+import com.yousof.athan.settingScreenComponents.HourFormat
+import com.yousof.athan.settingScreenComponents.Language
+import com.yousof.athan.settingScreenComponents.Location
 
 @Composable
-
-fun SettingsScreen(
-  navController: NavHostController
-){
-    Column (
-    ){
-       HeaderText()
+fun settingsScreen(navController: NavHostController) {
+    Column {
+        HeaderText()
         HourFormat()
         Language()
         Location()
@@ -35,20 +30,18 @@ fun SettingsScreen(
         AboutUs()
     }
 }
-@Composable fun HeaderText (){
+
+@Composable fun headerText() {
     Text(
         text = "Settings",
         fontFamily = FontFamily.Default,
         color = Color.White,
         textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 60.dp, bottom = 40.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(top = 60.dp, bottom = 40.dp),
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
     )
 }
-
-
-
-
