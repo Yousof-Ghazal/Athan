@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.yousof.athan"
     compileSdk = 35
 
@@ -62,7 +63,6 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material3:material3:1.4.0-alpha17")
-    implementation("androidx.compose.runtime:runtime-livedata:1.8.2")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("io.coil-kt:coil-compose:2.6.0")
