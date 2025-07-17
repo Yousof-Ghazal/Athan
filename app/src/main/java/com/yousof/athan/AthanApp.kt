@@ -18,11 +18,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yousof.athan.screens.Bottombar
-import com.yousof.athan.screens.CalenderScreen
-import com.yousof.athan.screens.HomeScreen
-import com.yousof.athan.screens.KabaDirection
-import com.yousof.athan.screens.SettingsScreen
+import com.yousof.athan.screens.bottombar
+import com.yousof.athan.screens.calenderScreen
+import com.yousof.athan.screens.homeScreen
+import com.yousof.athan.screens.kabaDirection
+import com.yousof.athan.screens.settingsScreen
 import com.yousof.athan.viewModel.NavigationScreen
 
 @Composable
@@ -43,12 +43,12 @@ fun athanApp(navController: NavHostController = rememberNavController()) {
             startDestination = NavigationScreen.Home.route,
             modifier = Modifier.padding(bottom = 80.dp),
         ) {
-            composable(NavigationScreen.Home.route) { HomeScreen(navController) }
-            composable(NavigationScreen.Calender.route) { CalenderScreen(navController) }
-            composable(NavigationScreen.KabaDirection.route) { KabaDirection(navController) }
-            composable(NavigationScreen.Settings.route) { SettingsScreen(navController) }
+            composable(NavigationScreen.Home.route) { homeScreen(navController) }
+            composable(NavigationScreen.Calender.route) { calenderScreen(navController) }
+            composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController) }
+            composable(NavigationScreen.Settings.route) { settingsScreen(navController) }
         }
-        Bottombar(
+        bottombar(
             navController = navController,
             selectedIndex = selectedIndex,
             onItemSelected = { index -> selectedIndex = index },

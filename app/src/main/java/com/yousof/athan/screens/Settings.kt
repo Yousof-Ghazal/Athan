@@ -13,21 +13,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.yousof.athan.settingScreenComponents.AboutUs
-import com.yousof.athan.settingScreenComponents.Date
-import com.yousof.athan.settingScreenComponents.HourFormat
-import com.yousof.athan.settingScreenComponents.Language
-import com.yousof.athan.settingScreenComponents.Location
+import com.yousof.athan.settingScreenComponents.aboutUs
+import com.yousof.athan.settingScreenComponents.date
+import com.yousof.athan.settingScreenComponents.hourFormat
+import com.yousof.athan.settingScreenComponents.language
+import com.yousof.athan.settingScreenComponents.location
 
 @Composable
 fun settingsScreen(navController: NavHostController) {
     Column {
-        HeaderText()
-        HourFormat()
-        Language()
-        Location()
-        Date()
-        AboutUs()
+        headerText()
+        hourFormat()
+        language()
+        location()
+        date()
+        aboutUs()
     }
 }
 

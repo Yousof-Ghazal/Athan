@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.yousof.athan.homeScreenComponents.PrayerCard
+import com.yousof.athan.homeScreenComponents.prayerCard
 import com.yousof.athan.viewModel.PrayerViewModel
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -49,18 +49,18 @@ fun calenderScreen(
                 modifier = Modifier,
                 horizontalArrangement = Arrangement.spacedBy(36.dp),
             ) {
-                PrayerCard(title = "Fajr", data = uiState.value)
-                PrayerCard(title = "Dhuhr", data = uiState.value)
-                PrayerCard(title = "Sunrise", data = uiState.value)
+                prayerCard(title = "Fajr", data = uiState.value)
+                prayerCard(title = "Dhuhr", data = uiState.value)
+                prayerCard(title = "Sunrise", data = uiState.value)
             }
             Spacer(modifier = Modifier.height(24.dp))
             Row(
                 modifier = Modifier.padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(36.dp),
             ) {
-                PrayerCard(title = "Asr", data = uiState.value)
-                PrayerCard(title = "Maghrib", data = uiState.value)
-                PrayerCard(title = "Isha", data = uiState.value)
+                prayerCard(title = "Asr", data = uiState.value)
+                prayerCard(title = "Maghrib", data = uiState.value)
+                prayerCard(title = "Isha", data = uiState.value)
             }
         }
         Card(
