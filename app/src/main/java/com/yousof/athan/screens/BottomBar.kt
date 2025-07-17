@@ -32,11 +32,13 @@ fun bottombar(
     onItemSelected: (Int) -> Unit,
 ) {
     val routes = listOf("Home", "Calender", "KabaDirection", "Settings")
-    val icons = listOf(
-        Icons.Filled.Home,
-        Icons.Filled.CalendarMonth,
-        Icons.Filled.Directions,
-        Icons.Filled.SettingsApplications)
+    val icons =
+        listOf(
+            Icons.Filled.Home,
+            Icons.Filled.CalendarMonth,
+            Icons.Filled.Directions,
+            Icons.Filled.SettingsApplications,
+        )
 
     Row(
         modifier =
