@@ -50,7 +50,7 @@ fun athanTheme(
             darkTheme -> DarkColorScheme
             else -> LightColorScheme
         }
-
+    0
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
