@@ -24,6 +24,7 @@ fun homeScreen(
     showNotification: (String, String) -> Unit,
 ) {
     val uiState = viewModel.uiState.collectAsState()
+
     if (uiState.value != null) {
         Column(
             modifier =
@@ -55,22 +56,37 @@ fun homeScreen(
             }
             Spacer(modifier = Modifier.height(208.dp))
             Row {
-                currentPrayer(prayerName = "dhuhr", onToggleNotification = {
-                        isActive ->
-                    showNotification("Athan Erinnerung", "Dhuhr ${if (isActive) "Aktiviert" else "deaktiviert"}")
-                })
+                currentPrayer(
+                    prayerName = "dhuhr",
+                    onToggleNotification = {
+                            isActive ->
+                        showNotification(
+                            "Athan Erinnerung",
+                            "Dhuhr ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                        )
+                    },
+                    data = uiState.value!!,
+                )
             }
             Row {
-                currentPrayer(prayerName = "Asr", onToggleNotification = {
-                        isActive ->
-                    showNotification("Athan Erinnerung", "Asr ${if (isActive) "Aktiviert" else "deaktiviert"}")
-                })
+                currentPrayer(
+                    prayerName = "Asr",
+                    onToggleNotification = {
+                            isActive ->
+                        showNotification("Athan Erinnerung", "Asr ${if (isActive) "Aktiviert" else "deaktiviert"}")
+                    },
+                    data = uiState.value!!,
+                )
             }
             Row {
-                currentPrayer(prayerName = "Maghrib", onToggleNotification = {
-                        isActive ->
-                    showNotification("Athan Erinnerung", "Maghrib ${if (isActive) "Aktiviert" else "deaktiviert"}")
-                })
+                currentPrayer(
+                    prayerName = "Maghrib",
+                    onToggleNotification = {
+                            isActive ->
+                        showNotification("Athan Erinnerung", "Maghrib ${if (isActive) "Aktiviert" else "deaktiviert"}")
+                    },
+                    data = uiState.value!!,
+                )
             }
         }
     } else {
