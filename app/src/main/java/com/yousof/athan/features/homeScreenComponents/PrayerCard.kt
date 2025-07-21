@@ -1,4 +1,4 @@
-package com.yousof.athan.homeScreenComponents
+package com.yousof.athan.features.homeScreenComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.yousof.athan.settingScreenComponents
+package com.yousof.athan.features.settingScreenComponents
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun location() {
+fun language() {
     Card(
         modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(Color(0x99482864)),
@@ -50,9 +50,8 @@ fun location() {
                             .background(Color(0x99482864)),
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.LocationOn,
-                        tint = Color.White,
-                        contentDescription = "Location",
+                        imageVector = Icons.Filled.Language,
+                        contentDescription = "Language",
                         modifier = Modifier.fillMaxSize(),
                     )
                 }
@@ -62,7 +61,7 @@ fun location() {
                 modifier = Modifier.clickable { }.weight(1f).padding(end = 16.dp),
             ) {
                 Text(
-                    text = "Deutschland",
+                    text = "Deutsch",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp,

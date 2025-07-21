@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
-   // id("io.gitlab.arturbosch.detekt") version("1.23.8")
+    // id("io.gitlab.arturbosch.detekt") version("1.23.8")
 }
 
 android {

@@ -1,4 +1,4 @@
-package com.yousof.athan.viewModel
+package com.yousof.athan.features.viewModel
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth

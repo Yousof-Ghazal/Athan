@@ -1,4 +1,4 @@
-package com.yousof.athan.screens
+package com.yousof.athan.features.app
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
