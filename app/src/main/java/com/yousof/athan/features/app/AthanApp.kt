@@ -1,4 +1,4 @@
-package com.yousof.athan
+package com.yousof.athan.features.app
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,15 +18,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yousof.athan.screens.bottombar
-import com.yousof.athan.screens.calenderScreen
-import com.yousof.athan.screens.homeScreen
-import com.yousof.athan.screens.kabaDirection
-import com.yousof.athan.screens.settingsScreen
-import com.yousof.athan.viewModel.NavigationScreen
+import com.yousof.athan.R
+import com.yousof.athan.features.calender.calenderScreen
+import com.yousof.athan.features.homeScreenComponents.homeScreen
+import com.yousof.athan.features.settingScreenComponents.settingsScreen
+import com.yousof.athan.features.viewModel.NavigationScreen
 
 @Composable
-fun athanApp(navController: NavHostController = rememberNavController()) {
+fun athanApp(
+    showNotification: (String, String) -> Unit,
+    navController: NavHostController = rememberNavController(),
+) {
     val navController = rememberNavController()
     var selectedIndex by remember { mutableStateOf(0) }
     Box(
@@ -43,7 +45,9 @@ fun athanApp(navController: NavHostController = rememberNavController()) {
             startDestination = NavigationScreen.Home.route,
             modifier = Modifier.padding(bottom = 80.dp),
         ) {
-            composable(NavigationScreen.Home.route) { homeScreen(navController) }
+            composable(NavigationScreen.Home.route) {
+                homeScreen(navController, showNotification = showNotification)
+            }
             composable(NavigationScreen.Calender.route) { calenderScreen(navController) }
             composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController) }
             composable(NavigationScreen.Settings.route) { settingsScreen(navController) }

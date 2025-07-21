@@ -1,4 +1,4 @@
-package com.yousof.athan.homeScreenComponents
+package com.yousof.athan.features.homeScreenComponents
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yousof.athan.api.Aladan
-
 
 // Date optimized
 @Composable

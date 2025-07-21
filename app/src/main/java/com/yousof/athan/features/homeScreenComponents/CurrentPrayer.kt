@@ -1,4 +1,4 @@
-package com.yousof.athan.homeScreenComponents
+package com.yousof.athan.features.homeScreenComponents
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -24,12 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun currentPrayer() {
+fun currentPrayer(
+    prayerName: String,
+    onToggleNotification: (Boolean) -> Unit,
+) {
     var timeLeft by remember { mutableStateOf(0L) }
     var nextPrayer by remember { mutableStateOf("...") }
     var isActive by remember { mutableStateOf(false) }
@@ -51,7 +53,7 @@ fun currentPrayer() {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = "Dhuhr",
+                text = prayerName,
                 color = Color.White,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Medium,
@@ -75,25 +77,12 @@ fun currentPrayer() {
                         .padding(8.dp)
                         .width(37.dp)
                         .height(35.dp)
-                        .clickable { isActive = !isActive },
+                        .clickable {
+                            isActive = !isActive
+                            onToggleNotification(isActive)
+                        },
                 tint = Color.White,
             )
         }
-           /* Icon(
-                Icons.Filled.NotificationsActive, contentDescription = "Notficication",
-                modifier = Modifier
-                    .padding(8.dp)
-                    .width(37.dp)
-                    .height(35.dp)
-                , tint = Color.White
-            )
-
-            */
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun currentpreayerPRev() {
-    currentPrayer()
 }

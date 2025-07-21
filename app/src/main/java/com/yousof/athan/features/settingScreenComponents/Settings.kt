@@ -1,4 +1,4 @@
-package com.yousof.athan.screens
+package com.yousof.athan.features.settingScreenComponents
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,11 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.yousof.athan.settingScreenComponents.aboutUs
-import com.yousof.athan.settingScreenComponents.date
-import com.yousof.athan.settingScreenComponents.hourFormat
-import com.yousof.athan.settingScreenComponents.language
-import com.yousof.athan.settingScreenComponents.location
 
 @Composable
 fun settingsScreen(navController: NavHostController) {
