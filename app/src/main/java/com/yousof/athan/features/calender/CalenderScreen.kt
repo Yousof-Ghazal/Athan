@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.yousof.athan.features.homeScreenComponents.prayerCard
 import com.yousof.athan.features.viewModel.PrayerViewModel
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -37,8 +36,8 @@ fun calenderScreen(
     fun LocalDateTime.toMillis(): Long = this.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
     val dateTime = LocalDateTime.now()
     val datePickerState = rememberDatePickerState(initialSelectedDateMillis = dateTime.toMillis())
-    val uiState = viewModel.uiState.collectAsState()
-    if (uiState.value != null) {
+    val uiState = viewModel.uiState
+    if (uiState != null) {
         Column(
             modifier = Modifier.fillMaxSize().padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,19 +51,13 @@ fun calenderScreen(
                     modifier = Modifier,
                     horizontalArrangement = Arrangement.spacedBy(36.dp),
                 ) {
-                    prayerCard(title = "Fajr", data = uiState.value!!)
-                    prayerCard(title = "Dhuhr", data = uiState.value!!)
-                    prayerCard(title = "Sunrise", data = uiState.value!!)
+
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 Row(
                     modifier = Modifier.padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(36.dp),
-                ) {
-                    prayerCard(title = "Asr", data = uiState.value!!)
-                    prayerCard(title = "Maghrib", data = uiState.value!!)
-                    prayerCard(title = "Isha", data = uiState.value!!)
-                }
+                ) {}
             }
             Card(
                 shape = RoundedCornerShape(16.dp),

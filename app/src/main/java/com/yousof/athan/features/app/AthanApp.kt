@@ -1,5 +1,6 @@
 package com.yousof.athan.features.app
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,11 +24,14 @@ import com.yousof.athan.features.calender.calenderScreen
 import com.yousof.athan.features.homeScreenComponents.homeScreen
 import com.yousof.athan.features.settingScreenComponents.settingsScreen
 import com.yousof.athan.features.viewModel.NavigationScreen
+import com.yousof.athan.features.viewModel.PrayerViewModel
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun athanApp(
     showNotification: (String, String) -> Unit,
     navController: NavHostController = rememberNavController(),
+    viewModel: PrayerViewModel,
 ) {
     val navController = rememberNavController()
     var selectedIndex by remember { mutableStateOf(0) }
@@ -46,7 +50,12 @@ fun athanApp(
             modifier = Modifier.padding(bottom = 80.dp),
         ) {
             composable(NavigationScreen.Home.route) {
-                homeScreen(navController, showNotification = showNotification)
+                homeScreen(
+                    navController,
+                    showNotification = showNotification,
+                    viewModel = PrayerViewModel(),
+                )
+                // Das bedeutet: Der Home-Screen bekommt jetzt die Kontrolle über die Benachrichtigungen.
             }
             composable(NavigationScreen.Calender.route) { calenderScreen(navController) }
             composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController) }

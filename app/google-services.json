@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907972824978",
+    "project_id": "athan-d5c92",
+    "storage_bucket": "athan-d5c92.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907972824978:android:1650ab5beefe5e9d407b4b",
+        "android_client_info": {
+          "package_name": "com.yousof.athan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpM171hLYB-77Wi7Dp-10uTuYSQjsDXdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
