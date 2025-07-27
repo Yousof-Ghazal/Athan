@@ -39,7 +39,6 @@ fun bottombar(
             Icons.Filled.Directions,
             Icons.Filled.SettingsApplications,
         )
-
     Row(
         modifier =
             modifier
