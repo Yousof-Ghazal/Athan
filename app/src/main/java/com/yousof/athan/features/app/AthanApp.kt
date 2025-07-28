@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.yousof.athan.R
 import com.yousof.athan.features.calender.calenderScreen
 import com.yousof.athan.features.homeScreenComponents.homeScreen
+import com.yousof.athan.features.settingScreenComponents.locationGPS
 import com.yousof.athan.features.settingScreenComponents.settingsScreen
 import com.yousof.athan.features.viewModel.NavigationScreen
 import com.yousof.athan.features.viewModel.PrayerViewModel
@@ -60,6 +61,7 @@ fun athanApp(
             composable(NavigationScreen.Calender.route) { calenderScreen(navController) }
             composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController) }
             composable(NavigationScreen.Settings.route) { settingsScreen(navController) }
+            composable(NavigationScreen.LocationGPS.route) { locationGPS(navController) }
         }
         bottombar(
             navController = navController,

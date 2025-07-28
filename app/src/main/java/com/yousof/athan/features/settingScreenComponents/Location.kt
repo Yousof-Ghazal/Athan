@@ -26,9 +26,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun location() {
+fun location(navHostController: NavHostController) {
     Card(
         modifier = Modifier.padding(8.dp).fillMaxWidth(),
         colors = CardDefaults.cardColors(Color(0x99482864)),
@@ -59,7 +60,10 @@ fun location() {
             }
             Column(
                 horizontalAlignment = Alignment.End,
-                modifier = Modifier.clickable { }.weight(1f).padding(end = 16.dp),
+                modifier =
+                    Modifier.clickable {
+                        navHostController.navigate("locationGPS")
+                    }.weight(1f).padding(end = 16.dp),
             ) {
                 Text(
                     text = "Deutschland",

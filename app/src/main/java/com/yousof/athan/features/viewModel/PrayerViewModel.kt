@@ -1,6 +1,5 @@
 package com.yousof.athan.features.viewModel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yousof.athan.api.Aladan
@@ -25,14 +24,15 @@ class PrayerViewModel : ViewModel() {
                 val timeToAsr = countdownToPrayer(result.data.timings.Asr)
                 val timeToMaghrib = countdownToPrayer(result.data.timings.Maghrib)
                 val timeToIsha = countdownToPrayer(result.data.timings.Isha)
-               uiState.value= PrayViewModelState(
-                   result,timeTofajr,
-                   timeToSunrise,
-                   timeToDhuhr,
-                   timeToAsr,
-                   timeToMaghrib,
-                   timeToIsha
-               )
+                uiState.value =
+                    PrayViewModelState(
+                        result, timeTofajr,
+                        timeToSunrise,
+                        timeToDhuhr,
+                        timeToAsr,
+                        timeToMaghrib,
+                        timeToIsha,
+                    )
 
                 delay(1000)
             }
@@ -40,9 +40,7 @@ class PrayerViewModel : ViewModel() {
     }
 }
 
-class CountDownToPrayer(val minutes: Long = 0L,val hours: Long = 0L,val seconds: Long = 0L)
-
-
+class CountDownToPrayer(val minutes: Long = 0L, val hours: Long = 0L, val seconds: Long = 0L)
 
 fun countdownToPrayer(salahTime: String): CountDownToPrayer { // class
 
@@ -60,9 +58,9 @@ fun countdownToPrayer(salahTime: String): CountDownToPrayer { // class
     val minutes = (remainingSeconds % 3600) / 60
     val seconds = remainingSeconds % 60
 
-    val CountDownToPrayer99 = CountDownToPrayer(minutes,hours,seconds)
+    val countDownToPrayerObj = CountDownToPrayer(minutes, hours, seconds)
 
-    return CountDownToPrayer99
+    return countDownToPrayerObj
 }
 
 data class PrayViewModelState(
@@ -72,7 +70,5 @@ data class PrayViewModelState(
     var uiStateTimeDhuhr: CountDownToPrayer = CountDownToPrayer(),
     var uiStateTimeAsr: CountDownToPrayer = CountDownToPrayer(),
     var uiStateTimeMaghrib: CountDownToPrayer = CountDownToPrayer(),
-    var uiStateTimeIsha: CountDownToPrayer = CountDownToPrayer()
-){
-
-}
+    var uiStateTimeIsha: CountDownToPrayer = CountDownToPrayer(),
+)

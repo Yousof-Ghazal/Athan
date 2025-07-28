@@ -17,4 +17,6 @@ sealed class NavigationScreen(
     object KabaDirection : NavigationScreen("kabadirection", "KabaDirection", Icons.Default.CalendarMonth)
 
     object Settings : NavigationScreen("settings", "Settings", Icons.Default.CalendarMonth)
+
+    object LocationGPS : NavigationScreen("locationGPS", "LocationGPS", Icons.Default.CalendarMonth)
 }

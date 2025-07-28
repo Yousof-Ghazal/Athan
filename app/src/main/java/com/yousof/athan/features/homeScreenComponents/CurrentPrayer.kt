@@ -92,10 +92,13 @@ fun countdownToPrayerView(time: CountDownToPrayer) {
     val lable = if (isPassed) " - " else "left"
 
     Text(
-        text = String.format("$lable %02d:%02d:%02d",
-            time.hours.absoluteValue,
-            time.minutes.absoluteValue,
-            time.seconds.absoluteValue),
+        text =
+            String.format(
+                "$lable %02d:%02d:%02d",
+                time.hours.absoluteValue,
+                time.minutes.absoluteValue,
+                time.seconds.absoluteValue,
+            ),
         color = Color.White,
         fontSize = 24.sp,
         fontWeight = FontWeight.Medium,
