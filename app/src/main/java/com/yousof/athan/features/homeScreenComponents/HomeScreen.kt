@@ -28,7 +28,7 @@ fun homeScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    if (uiState.Athan!= null) {
+    if (uiState.Athan != null) {
         Column(
             modifier =
                 Modifier
@@ -96,10 +96,11 @@ fun homeScreen(
             }
             Spacer(modifier = Modifier.height(20.dp))
 
-            Column (
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-            ){
+            Column(
+                modifier =
+                    Modifier
+                        .verticalScroll(rememberScrollState()),
+            ) {
                 Row {
                     currentPrayer(
                         prayerName = "Fajr",
@@ -107,9 +108,11 @@ fun homeScreen(
                                 isActive ->
                             showNotification(
                                 "Athan Erinnerung",
-                                "Fajr ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                                "Fajr ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeFajr
+                        timeToPray = uiState.uiStateTimeFajr,
                     )
                 }
                 Row {
@@ -117,10 +120,13 @@ fun homeScreen(
                         prayerName = "Sunrise",
                         onToggleNotification = {
                                 isActive ->
-                            showNotification("Athan Erinnerung",
-                                "Sunrise ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                            showNotification(
+                                "Athan Erinnerung",
+                                "Sunrise ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeSunrise
+                        timeToPray = uiState.uiStateTimeSunrise,
                     )
                 }
 
@@ -129,10 +135,13 @@ fun homeScreen(
                         prayerName = "Dhuhr",
                         onToggleNotification = {
                                 isActive ->
-                            showNotification("Athan Erinnerung",
-                                "Dhuhr ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                            showNotification(
+                                "Athan Erinnerung",
+                                "Dhuhr ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeDhuhr
+                        timeToPray = uiState.uiStateTimeDhuhr,
                     )
                 }
                 Row {
@@ -140,10 +149,13 @@ fun homeScreen(
                         prayerName = "Asr",
                         onToggleNotification = {
                                 isActive ->
-                            showNotification("Athan Erinnerung",
-                                "Asr ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                            showNotification(
+                                "Athan Erinnerung",
+                                "Asr ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeAsr
+                        timeToPray = uiState.uiStateTimeAsr,
                     )
                 }
                 Row {
@@ -151,10 +163,13 @@ fun homeScreen(
                         prayerName = "Maghrib",
                         onToggleNotification = {
                                 isActive ->
-                            showNotification("Athan Erinnerung",
-                                "Maghrib ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                            showNotification(
+                                "Athan Erinnerung",
+                                "Maghrib ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeMaghrib
+                        timeToPray = uiState.uiStateTimeMaghrib,
                     )
                 }
 
@@ -163,20 +178,24 @@ fun homeScreen(
                         prayerName = "Isha",
                         onToggleNotification = {
                                 isActive ->
-                            showNotification("Athan Erinnerung",
-                                "Isha ${if (isActive) "Aktiviert" else "deaktiviert"}")},
+                            showNotification(
+                                "Athan Erinnerung",
+                                "Isha ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                            )
+                        },
                         data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeIsha
+                        timeToPray = uiState.uiStateTimeIsha,
                     )
                 }
             }
         }
-    }
-    else { (Row(
+    } else {
+        (
+            Row(
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-        ) {
+            ) {
                 CircularProgressIndicator()
             }
         )

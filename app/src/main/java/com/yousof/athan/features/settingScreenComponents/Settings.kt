@@ -20,7 +20,7 @@ fun settingsScreen(navController: NavHostController) {
         headerText()
         hourFormat()
         language()
-        location()
+        location(navController)
         date()
         aboutUs()
     }
