@@ -21,6 +21,14 @@ fun currentDate(data: Aladan) {
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
     ) {
+
+   //testing
+        Text (
+            text = "howww", fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            color = Color.White, )
+
+
         Row(
             modifier = Modifier.fillMaxWidth().padding(end = 147.dp, top = 35.dp),
             horizontalArrangement = Arrangement.Start,
@@ -31,7 +39,10 @@ fun currentDate(data: Aladan) {
                 fontSize = 20.sp,
                 color = Color.White,
             )
+
         }
+
+
         Row(
             modifier = Modifier.fillMaxWidth().padding(end = 147.dp, top = 8.dp),
             horizontalArrangement = Arrangement.Start,

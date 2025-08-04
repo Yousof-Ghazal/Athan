@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yousof.athan.api.Aladan
 import com.yousof.athan.api.RetrofitObject
+import com.yousof.athan.features.settingScreenComponents.city
+import com.yousof.athan.features.settingScreenComponents.country
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +18,10 @@ class PrayerViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val result = aladhanApi.getPrayerTimes("Herford", "Germany")
+            val result = aladhanApi.getPrayerTimes(
+                if (city.isNullOrBlank()) " " else city,
+                if (country.isNullOrBlank()) "Saudi Arabia" else country,)
+
             while (true) {
                 val timeTofajr = countdownToPrayer(result.data.timings.Fajr)
                 val timeToSunrise = countdownToPrayer(result.data.timings.Sunrise)
