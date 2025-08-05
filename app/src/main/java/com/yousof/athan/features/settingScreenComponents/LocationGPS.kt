@@ -29,14 +29,14 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.yousof.athan.features.viewModel.PrayerViewModel
 import java.util.Locale
 
-
-var city   = ""
-var country = ""
-
 @Composable
-fun locationGPS(navHostController: NavHostController) {
+fun locationGPS(
+    navHostController: NavHostController,
+    prayerViewModel: PrayerViewModel,
+) {
     val context = LocalContext.current
     val fusedLocationClient = remember { LocationServices.getFusedLocationProviderClient(context) }
     var resultText by remember { mutableStateOf("Result appears here...") }
@@ -46,13 +46,14 @@ fun locationGPS(navHostController: NavHostController) {
             ActivityResultContracts.RequestPermission(),
         ) { isGranted ->
             if (isGranted) {
-                getCoordinates(context, fusedLocationClient) { city2, country2 ->
-                    resultText = "City $city \nCountry $country"
+                getCoordinates(context, fusedLocationClient) { city, country ->
+                    prayerViewModel.setCityAndCountry(city, country)
                 }
             } else {
                 resultText = "location permission denied"
             }
         }
+
     Column(
         modifier =
             Modifier
@@ -67,6 +68,7 @@ fun locationGPS(navHostController: NavHostController) {
                     ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) -> {
                         getCoordinates(context, fusedLocationClient) { city, country ->
                             resultText = "City $city \nCountry $country"
+                            prayerViewModel.setCityAndCountry(city, country)
                         }
                     }
                     else -> {
@@ -77,6 +79,7 @@ fun locationGPS(navHostController: NavHostController) {
         ) {
             Text(text = "Location detection")
         }
+
         Spacer(modifier = Modifier.height(24.dp))
         Text(text = resultText)
     }
@@ -91,8 +94,9 @@ fun getCoordinates(
     try {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
-                val (city1, country1) = getCityAndCountryFromLocation(context, location.latitude, location.longitude)
-                onResult(city, country)
+                val (city1, country1) =
+                    getCityAndCountryFromLocation(context, location.latitude, location.longitude)
+                onResult(city1, country1)
             } else {
                 Toast.makeText(context, "Location not available", Toast.LENGTH_SHORT).show()
             }
@@ -112,10 +116,10 @@ fun getCityAndCountryFromLocation(
 
     return if (!addressList.isNullOrEmpty()) {
         val address = addressList[0]
-        city = address.locality ?: address.subAdminArea ?: "unknown"
-        country = address.countryName ?: "unknown"
+        val city = address.locality ?: address.subAdminArea ?: "unknown"
+        val country = address.countryName ?: "unknown"
         Pair(city, country)
     } else {
-        Pair("unknown ", "unknown ")
+        Pair("unknown", "unknown")
     }
 }

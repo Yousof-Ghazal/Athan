@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
     ) {
         val builder =
             NotificationCompat.Builder(this, "AthanReminder")
-                .setSmallIcon(R.drawable.mosque)
+                // .setSmallIcon(R.drawable.mosque)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

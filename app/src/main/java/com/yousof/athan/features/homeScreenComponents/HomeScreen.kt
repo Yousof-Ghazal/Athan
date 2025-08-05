@@ -8,24 +8,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.yousof.athan.features.settingScreenComponents.city
-import com.yousof.athan.features.settingScreenComponents.country
 import com.yousof.athan.features.viewModel.PrayerViewModel
 
 @Composable
@@ -44,44 +36,40 @@ fun homeScreen(
                     .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Column (
+            Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceEvenly,
-                ) {
+            ) {
                 Row(
                     modifier = Modifier.padding(16.dp),
                 ) {
-                    currentDate(uiState.Athan!!) }
-
+                    currentDate(uiState.Athan!!)
                 }
+            }
 
             Row(
-                modifier = Modifier,
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 prayerCard(
                     title = "Fajr",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-//                    title = "Fajr",
-//                    data = uiState.value!!
+                    onToggleNotification = {},
                 )
                 prayerCard(
                     title = "Sunrise",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-                    //    title = "Dhuhr", data = uiState.value!!
+                    onToggleNotification = {},
                 )
                 prayerCard(
                     title = "Dhuhr",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-                    //    title = "Sunrise", data = uiState.value!!
+                    onToggleNotification = {},
                 )
             }
+
             Row(
                 modifier = Modifier.padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -90,128 +78,61 @@ fun homeScreen(
                     title = "Asr",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-                    // title = "Asr", data = uiState.value!!
+                    onToggleNotification = {},
                 )
                 prayerCard(
                     title = "Maghrib",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-                    // title = "Maghrib", data = uiState.value!!
+                    onToggleNotification = {},
                 )
                 prayerCard(
                     title = "Isha",
                     data = uiState.Athan!!,
                     isNotificationActive = true,
-                    onToggleNotification = { },
-                    // title = "Isha", data = uiState.value!!
+                    onToggleNotification = {},
                 )
             }
+
             Spacer(modifier = Modifier.height(20.dp))
 
             Column(
-                modifier =
-                    Modifier
-                        .verticalScroll(rememberScrollState()),
+                modifier = Modifier.verticalScroll(rememberScrollState()),
             ) {
-                Row {
-                    currentPrayer(
-                        prayerName = "Fajr",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Fajr ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeFajr,
+                val prayers =
+                    listOf(
+                        Triple("Fajr", uiState.uiStateTimeFajr, "Fajr"),
+                        Triple("Sunrise", uiState.uiStateTimeSunrise, "Sunrise"),
+                        Triple("Dhuhr", uiState.uiStateTimeDhuhr, "Dhuhr"),
+                        Triple("Asr", uiState.uiStateTimeAsr, "Asr"),
+                        Triple("Maghrib", uiState.uiStateTimeMaghrib, "Maghrib"),
+                        Triple("Isha", uiState.uiStateTimeIsha, "Isha"),
                     )
-                }
-                Row {
-                    currentPrayer(
-                        prayerName = "Sunrise",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Sunrise ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeSunrise,
-                    )
-                }
 
-                Row {
-                    currentPrayer(
-                        prayerName = "Dhuhr",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Dhuhr ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeDhuhr,
-                    )
-                }
-                Row {
-                    currentPrayer(
-                        prayerName = "Asr",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Asr ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeAsr,
-                    )
-                }
-                Row {
-                    currentPrayer(
-                        prayerName = "Maghrib",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Maghrib ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeMaghrib,
-                    )
-                }
-
-                Row {
-                    currentPrayer(
-                        prayerName = "Isha",
-                        onToggleNotification = {
-                                isActive ->
-                            showNotification(
-                                "Athan Erinnerung",
-                                "Isha ${if (isActive) "Aktiviert" else "deaktiviert"}",
-                            )
-                        },
-                        data = uiState.Athan!!,
-                        timeToPray = uiState.uiStateTimeIsha,
-                    )
+                prayers.forEach { (name, time, label) ->
+                    Row {
+                        currentPrayer(
+                            prayerName = name,
+                            onToggleNotification = { isActive ->
+                                showNotification(
+                                    "Athan Erinnerung",
+                                    "$label ${if (isActive) "Aktiviert" else "deaktiviert"}",
+                                )
+                            },
+                            data = uiState.Athan!!,
+                            timeToPray = time,
+                        )
+                    }
                 }
             }
         }
     } else {
-        (
-            Row(
-                modifier = Modifier.fillMaxSize(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                CircularProgressIndicator()
-            }
-        )
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            CircularProgressIndicator()
+        }
     }
 }

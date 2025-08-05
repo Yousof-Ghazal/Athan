@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yousof.athan.api.Aladan
 import com.yousof.athan.api.RetrofitObject
-import com.yousof.athan.features.settingScreenComponents.city
-import com.yousof.athan.features.settingScreenComponents.country
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -13,25 +11,48 @@ import java.time.Duration
 import java.time.LocalTime
 
 class PrayerViewModel : ViewModel() {
+    private var result: Aladan? = null
     private val aladhanApi = RetrofitObject.aladanApi
     var uiState = MutableStateFlow(PrayViewModelState())
+    private var city = "Amman"
+    private var country = "Jordan"
+
+    fun setCityAndCountry(
+        city: String,
+        country: String,
+    ) {
+        this.city = city
+        this.country = country
+        viewModelScope.launch {
+            fitchPrayTime()
+        }
+    }
+
+    suspend fun fitchPrayTime() {
+        var result =
+            aladhanApi.getPrayerTimes(
+                if (city.isNullOrBlank()) "Mecca" else city,
+                if (country.isNullOrBlank()) "Saudi Arabia" else country,
+            )
+
+        this.result = result
+    }
 
     init {
         viewModelScope.launch {
-            val result = aladhanApi.getPrayerTimes(
-                if (city.isNullOrBlank()) " " else city,
-                if (country.isNullOrBlank()) "Saudi Arabia" else country,)
-
+            fitchPrayTime()
             while (true) {
-                val timeTofajr = countdownToPrayer(result.data.timings.Fajr)
-                val timeToSunrise = countdownToPrayer(result.data.timings.Sunrise)
-                val timeToDhuhr = countdownToPrayer(result.data.timings.Dhuhr)
-                val timeToAsr = countdownToPrayer(result.data.timings.Asr)
-                val timeToMaghrib = countdownToPrayer(result.data.timings.Maghrib)
-                val timeToIsha = countdownToPrayer(result.data.timings.Isha)
+                val timeTofajr = countdownToPrayer(result!!.data.timings.Fajr)
+                val timeToSunrise = countdownToPrayer(result!!.data.timings.Sunrise)
+                val timeToDhuhr = countdownToPrayer(result!!.data.timings.Dhuhr)
+                val timeToAsr = countdownToPrayer(result!!.data.timings.Asr)
+                val timeToMaghrib = countdownToPrayer(result!!.data.timings.Maghrib)
+                val timeToIsha = countdownToPrayer(result!!.data.timings.Isha)
+
                 uiState.value =
                     PrayViewModelState(
-                        result, timeTofajr,
+                        result,
+                        timeTofajr,
                         timeToSunrise,
                         timeToDhuhr,
                         timeToAsr,
@@ -45,27 +66,27 @@ class PrayerViewModel : ViewModel() {
     }
 }
 
-class CountDownToPrayer(val minutes: Long = 0L, val hours: Long = 0L, val seconds: Long = 0L)
+class CountDownToPrayer(
+    val minutes: Long = 0L,
+    val hours: Long = 0L,
+    val seconds: Long = 0L,
+)
 
-fun countdownToPrayer(salahTime: String): CountDownToPrayer { // class
-
+fun countdownToPrayer(salahTime: String): CountDownToPrayer {
     val prayerTime =
         try {
             LocalTime.parse(salahTime.split(" ")[0])
         } catch (e: Exception) {
             LocalTime.MIDNIGHT
         }
-    var remainingSeconds: Long = 0
+
     val now = LocalTime.now()
-    val duration = Duration.between(now, prayerTime)
-    remainingSeconds = duration.seconds
+    val remainingSeconds = Duration.between(now, prayerTime).seconds
     val hours = remainingSeconds / 3600
     val minutes = (remainingSeconds % 3600) / 60
     val seconds = remainingSeconds % 60
 
-    val countDownToPrayerObj = CountDownToPrayer(minutes, hours, seconds)
-
-    return countDownToPrayerObj
+    return CountDownToPrayer(minutes, hours, seconds)
 }
 
 data class PrayViewModelState(

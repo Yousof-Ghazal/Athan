@@ -54,14 +54,14 @@ fun athanApp(
                 homeScreen(
                     navController,
                     showNotification = showNotification,
-                    viewModel = PrayerViewModel(),
+                    viewModel = viewModel,
                 )
                 // Das bedeutet: Der Home-Screen bekommt jetzt die Kontrolle über die Benachrichtigungen.
             }
-            composable(NavigationScreen.Calender.route) { calenderScreen(navController) }
-            composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController) }
-            composable(NavigationScreen.Settings.route) { settingsScreen(navController) }
-            composable(NavigationScreen.LocationGPS.route) { locationGPS(navController) }
+            composable(NavigationScreen.Calender.route) { calenderScreen(navController, viewModel) }
+            composable(NavigationScreen.KabaDirection.route) { kabaDirection(navController, viewModel) }
+            composable(NavigationScreen.Settings.route) { settingsScreen(navController, viewModel) }
+            composable(NavigationScreen.LocationGPS.route) { locationGPS(navController, viewModel) }
         }
         bottombar(
             navController = navController,
