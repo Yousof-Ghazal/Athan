@@ -23,6 +23,8 @@ class PrayerViewModel : ViewModel() {
     ) {
         this.city = city
         this.country = country
+        uiState.value = uiState.value.copy(city = city)
+        uiState.value = uiState.value.copy(country = country)
         viewModelScope.launch {
             fitchPrayTime()
         }
@@ -58,6 +60,8 @@ class PrayerViewModel : ViewModel() {
                         timeToAsr,
                         timeToMaghrib,
                         timeToIsha,
+                        city,
+                        country,
                     )
 
                 delay(1000)
@@ -97,4 +101,6 @@ data class PrayViewModelState(
     var uiStateTimeAsr: CountDownToPrayer = CountDownToPrayer(),
     var uiStateTimeMaghrib: CountDownToPrayer = CountDownToPrayer(),
     var uiStateTimeIsha: CountDownToPrayer = CountDownToPrayer(),
+    var city: String = "Connecting",
+    var country: String = "Connecting",
 )

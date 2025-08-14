@@ -43,7 +43,7 @@ fun homeScreen(
                 Row(
                     modifier = Modifier.padding(16.dp),
                 ) {
-                    currentDate(uiState.Athan!!)
+                    currentDate(uiState.Athan!!, uiState.city, uiState.country)
                 }
             }
 

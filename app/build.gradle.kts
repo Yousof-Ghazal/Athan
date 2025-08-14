@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
     // id("io.gitlab.arturbosch.detekt") version("1.23.8")
+
+    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
 }
 
 android {
@@ -33,11 +35,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -45,7 +48,12 @@ android {
 }
 
 dependencies {
+    val roomVersion = "2.7.2"
 
+    // --- Desugaring für java.time ---
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
+    // --- Compose  ---
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -54,26 +62,50 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.messaging)
-    implementation(libs.play.services.location)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation("androidx.compose.material3:material3:1.4.0-alpha17")
+    // --- Room ---
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // --- Retrofit + Moshi (nur 2.11.0 + Moshi) ---
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+
+    // --- gson
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("com.google.code.gson:gson:2.10.1")
 
+    // --- Coroutines  ---
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    // Entfernt: 1.3.9
+
+    // --- DataStore ---
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // --- WorkManager ---
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // --- Play Services Location  ---
     implementation(libs.play.services.location)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    // --- Firebase  ---
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.messaging)
+
+    // --- Navigation Compose ---
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // --- Tests ---
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

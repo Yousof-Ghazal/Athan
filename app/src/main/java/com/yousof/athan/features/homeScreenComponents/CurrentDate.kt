@@ -16,30 +16,35 @@ import androidx.compose.ui.unit.sp
 import com.yousof.athan.api.Aladan
 
 @Composable
-fun currentDate(data: Aladan) {
+fun currentDate(
+    data: Aladan,
+    city: String,
+    country: String,
+) {
     Column(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = "howww",
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-            color = Color.White,
-        )
-
         Row(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(end = 147.dp, top = 35.dp),
-            horizontalArrangement = Arrangement.Start,
+                    .padding(top = 35.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = data.data.date.readable,
+                text =
+                    data.data.date.readable,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = Color.White,
+            )
+            Text(
+                text = "$city",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Color.White,
@@ -50,14 +55,21 @@ fun currentDate(data: Aladan) {
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(end = 147.dp, top = 8.dp),
-            horizontalArrangement = Arrangement.Start,
+                    .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text =
                     data.data.date.hijri.month.en + " / " +
                         data.data.date.hijri.month.number + " / " +
                         data.data.date.hijri.year,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = Color.White,
+            )
+            Text(
+                text = "$country",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Color.White,
