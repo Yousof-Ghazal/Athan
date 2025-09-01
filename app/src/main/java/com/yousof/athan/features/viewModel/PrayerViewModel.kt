@@ -4,9 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yousof.athan.api.Aladan
 import com.yousof.athan.api.RetrofitObject
+import com.yousof.athan.context
+import com.yousof.athan.data.local.DatabaseProvider
+import com.yousof.athan.data.local.PrayerTimeEntity
+import com.yousof.athan.data.repo.CachePolicy
+import com.yousof.athan.data.repo.RefreshFrequency
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.Duration
 import java.time.LocalTime
 
@@ -16,6 +23,15 @@ class PrayerViewModel : ViewModel() {
     var uiState = MutableStateFlow(PrayViewModelState())
     private var city = "Amman"
     private var country = "Jordan"
+
+    val policy = CachePolicy(RefreshFrequency.MONTHLY)
+// val list = repository.getMonth(2025, 8, 52.5200, 13.4050, "MWL", policy)
+// -> list ist die Monatsliste aus Room (vorher ggf. via API aktualisiert)
+
+    // z. B. in einer Composable oder ViewModel-Init (nur testweise):
+
+    val db = DatabaseProvider.get(context!!)
+    val dao = db.prayerDao() // Wenn das kompiliert/läuft, ist die DB registriert
 
     fun setCityAndCountry(
         city: String,
@@ -36,6 +52,18 @@ class PrayerViewModel : ViewModel() {
                 if (city.isNullOrBlank()) "Mecca" else city,
                 if (country.isNullOrBlank()) "Saudi Arabia" else country,
             )
+        val resultDb =
+            PrayerTimeEntity(
+                date = result.data.date.readable,
+                fajr = result.data.timings.Fajr,
+                dhuhr = result.data.timings.Dhuhr,
+                asr = result.data.timings.Asr,
+                maghrib = result.data.timings.Maghrib,
+                isha = result.data.timings.Isha,
+            )
+        withContext(Dispatchers.IO) {
+            dao.upsertAll(listOf(resultDb))
+        }
 
         this.result = result
     }

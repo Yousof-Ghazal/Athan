@@ -1,5 +1,6 @@
 package com.yousof.athan.features.homeScreenComponents
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,16 +17,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.yousof.athan.features.viewModel.PrayerViewModel
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun homeScreen(
     navController: NavHostController,
     viewModel: PrayerViewModel,
     showNotification: (String, String) -> Unit,
 ) {
+    val context = LocalContext.current
+
     val uiState by viewModel.uiState.collectAsState()
 
     if (uiState.Athan != null) {
