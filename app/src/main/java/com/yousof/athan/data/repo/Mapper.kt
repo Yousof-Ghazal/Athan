@@ -1,5 +1,7 @@
 package com.yousof.athan.data.repo
 
+import com.yousof.athan.data.local.PrayerTimeEntity
+import com.yousof.athan.data.remote.PrayerTimeDto
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -58,4 +60,22 @@ private fun parseLocalDateFlexible(input: String): LocalDate {
     }
 
     throw DateTimeParseException("Unbekanntes Datumsformat", input, 0)
+}
+
+internal fun PrayerTimeDto.toEntity(
+    locationKey: String,
+    method: String,
+    nowEpoch: Long,
+): PrayerTimeEntity {
+    return PrayerTimeEntity(
+        date = parseLocalDateFlexible(date),
+        fajr = parseLocalTimeFlexible(fajr),
+        dhuhr = parseLocalTimeFlexible(dhuhr),
+        asr = parseLocalTimeFlexible(asr),
+        maghrib = parseLocalTimeFlexible(maghrib),
+        isha = parseLocalTimeFlexible(isha),
+        locationKey = locationKey,
+        calcMethod = method,
+        lastUpdatedEpochSec = nowEpoch,
+    )
 }

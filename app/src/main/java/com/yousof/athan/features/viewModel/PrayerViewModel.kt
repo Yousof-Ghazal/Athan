@@ -54,12 +54,15 @@ class PrayerViewModel : ViewModel() {
             )
         val resultDb =
             PrayerTimeEntity(
-                date = result.data.date.readable,
-                fajr = result.data.timings.Fajr,
-                dhuhr = result.data.timings.Dhuhr,
-                asr = result.data.timings.Asr,
-                maghrib = result.data.timings.Maghrib,
-                isha = result.data.timings.Isha,
+                date = result.data.date.gregorian.date.let { java.time.LocalDate.parse(it) },
+                fajr = result.data.timings.Fajr.let { LocalTime.parse(it.split(" ")[0]) },
+                dhuhr = result.data.timings.Dhuhr.let { LocalTime.parse(it.split(" ")[0]) },
+                asr = result.data.timings.Asr.let { LocalTime.parse(it.split(" ")[0]) },
+                maghrib = result.data.timings.Maghrib.let { LocalTime.parse(it.split(" ")[0]) },
+                isha = result.data.timings.Isha.let { LocalTime.parse(it.split(" ")[0]) },
+                locationKey = "$city,$country",
+                calcMethod = result.data.meta.method.name,
+                lastUpdatedEpochSec = System.currentTimeMillis() / 1000,
             )
         withContext(Dispatchers.IO) {
             dao.upsertAll(listOf(resultDb))

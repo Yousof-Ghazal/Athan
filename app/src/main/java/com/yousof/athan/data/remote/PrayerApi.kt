@@ -14,6 +14,15 @@ interface PrayerApi {
         @Query("country") country: String,
         @Query("method") method: String,
     ): AladhanMonthResponse
+
+    @GET("calendar")
+    suspend fun getMonthlyByCoords(
+        @Query("latitude") lat: Double,
+        @Query("longitude") lng: Double,
+        @Query("method") method: String,
+        @Query("month") month: Int,
+        @Query("year") year: Int,
+    ): AladhanMonthResponse
 }
 
 // Minimaler DTO für die Aladhan-Struktur

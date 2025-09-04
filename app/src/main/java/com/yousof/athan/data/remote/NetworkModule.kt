@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object NetworkModule {
-    private const val BASE_URL = "\"https://api.aladhan.com/v1/"
+    private const val BASE_URL = "https://api.aladhan.com/v1/"
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()

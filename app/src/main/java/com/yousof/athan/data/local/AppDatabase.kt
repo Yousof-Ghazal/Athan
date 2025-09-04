@@ -1,5 +1,6 @@
 package com.yousof.athan.data.local
 
+import PrayerTimesDao
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
